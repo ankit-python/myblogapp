@@ -1,6 +1,7 @@
-{% extends 'blog/base.html' %}
+{% load static %}
 {% block content  %}
     <html>
+    <head>
     <style>
         .separator-type, .title-type, .intro-type, .content-type .intro-type p {
         position: relative;
@@ -242,8 +243,52 @@
       color: #fff;
     }
 
+
     </style>
+        {% if title %}
+        <title>Let's Blog - {{ title }}</title>
+    {% else %}
+        <title>Let's Blog</title>
+    {% endif %}
+         <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+
+    </head>
+
     <body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">Let's Blog</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About Us</a>
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
+                <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+              {% else %}
+                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
     <div class="ct-pageWrapper" id="ct-js-wrapper">
         <section class="company-heading intro-type" id="parallax-one">
             <div class="container">
@@ -255,14 +300,101 @@
             </div>
             <div class="parallax" id="parallax-cta"
                  style="background-image:url(https://www.solodev.com/assets/hero/hero.jpg);">
-
             </div>
-
     </div>
+
+    <section class="story-section company-sections ct-u-paddingBoth100 paddingBothHalf noTopMobilePadding" id="section">
+    <div class="container text-center">
+      <h2>Who are we?</h2>
+      <center>
+          <div class="col-md-8 col-md-offset-2">
+        <div class="red-border"></div>
+        <p class="ct-u-size22 ct-u-fontWeight300 marginTop90">We bring you closer to the people and things you love. Our Mission is to Give people the power to build community and bring the world closer together. We believe in the potential of people when they can come together.</p>
+      </div>
+          </center>
+<!--         <a class="ct-u-marginTop60 btn btn-solodev-red btn-fullWidth-sm ct-u-size19" href="#">Learn More</a>-->
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <center>
+          <div class="col-md-8 col-md-offset-2">
+          <h2>Our Culture</h2>
+          <h3>We are said to have the Best Environment to Work</h3>
+          <p class="ct-u-size22 ct-u-fontWeight300 ct-u-marginBottom60 marginTop40">At the Let's Blog company, we are constantly iterating, solving problems and working together to connect people all over the world. That’s why it’s important that our workforce reflects the diversity of the people we serve. Hiring people with different backgrounds and points of view helps us make better decisions, build better products and create better experiences for everyone.</p>
+        </div>
+          </center>
+<
+    </div>
+          </section>
+    <section class="culture-section company-sections ct-u-paddingBoth100 paddingBothHalf noTopMobilePadding">
+    <div class="container">
+      <div class="row">
+        <center>
+            <div class="col-md-8 col-md-offset-2">
+          <h2>Our Principles</h2>
+          <h3>Our principles are what we stand for. They are beliefs we hold deeply and make tradeoffs to pursue.</h3
+        </div>
+        </center>
+      </div>
+      <div class="row ct-u-paddingBoth20">
+        <div class="col-xs-6 col-md-4">
+          <div class="company-icons-white">
+            <i class="fa fa-medkit" aria-hidden="true"></i>
+            <p>Give People a Voice</p>
+            <p class="company-icons-subtext hidden-xs">People deserve to be heard and to have a voice — even when that means defending the right of people we disagree with..</p>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-4">
+          <div class="company-icons-white">
+            <i class="fa fa-money" aria-hidden="true"></i>
+            <p>Build Connection and Community</p>
+            <p class="company-icons-subtext hidden-xs">Our services help people connect, and when they’re at their best, they bring people closer together.</p>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-4">
+          <div class="company-icons-white">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <p>Serve Everyone</p>
+            <p class="company-icons-subtext hidden-xs">We work to make technology accessible to everyone, and our business model is ads so our services can be free.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row ct-u-paddingBoth20">
+        <div class="col-xs-6 col-md-4">
+          <div class="company-icons-white">
+            <i class="fa fa-coffee" aria-hidden="true"></i>
+            <p>Keep People Safe and Protect Privacy</p>
+            <p class="company-icons-subtext hidden-xs">We have a responsibility to promote the best of what people can do together by keeping people safe and preventing harm.</p>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-4">
+          <div class="company-icons-white">
+            <i class="fa fa-gamepad" aria-hidden="true"></i>
+            <p>Promote Economic Opportunity</p>
+            <p class="company-icons-subtext hidden-xs">Our tools level the playing field so businesses grow, create jobs and strengthen the economy.</p>
+          </div>
+        </div>
+          </section>
+<!--        <div class="col-xs-6 col-md-4">-->
+<!--          <div class="company-icons-white">-->
+<!--            <i class="fa fa-cutlery" aria-hidden="true"></i>-->
+<!--            <p>CRAS MOLLIS</p>-->
+<!--            <p class="company-icons-subtext hidden-xs">Etiam varius porttitor tellus et aliquet.</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <a class="ct-u-marginTop60 btn btn-solodev-red-reversed btn-fullWidth-sm ct-u-size19" href="/careers/">Ready to Learn More?</a>-->
+<!--    </div>-->
+
+
+</div>
+
+  </section>
+
     </body>
 
     </html>
-<!--<h1> Application made by Ankit Sawant</h1>-->
 {% endblock content %}
 
 
